@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 초기에 header의 스타일을 변경
+            $("#headers").css({
+                "background-color": "black",
+                "color": "white"
+            });
+
+            // body 내의 모든 h1 요소를 선택
+            var h1Elements = $("body").find("h1");
+
+            // 2초 후에 코드 실행
+            setTimeout(function() {
+                // 첫 번째 h1 요소를 제거
+                h1Elements.first().remove();
+
+                // 나머지 h1 요소의 순서를 바꿈
+                h1Elements = $("body").find("h1"); // 다시 가져와야 최신 순서가 반영됨
+                
+                // 첫 번째와 두 번째 h1 요소의 순서를 바꿈
+                var firstH1 = h1Elements.first();
+                var secondH1 = h1Elements.eq(1);
+                secondH1.after(firstH1);
+            }, 2000);
+        });
+    </script>
+</head>
+<body>
+    <header id="headers">
+        <h1>제거 대상 문서 객체</h1>
+        <h1>순서 교체 1</h1>
+        <h1>순서 교체 2</h1>
+    </header>
+</body>
+</html>
