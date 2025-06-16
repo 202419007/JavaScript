@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+    <style>
+        #output img {
+            border-radius: 50%;  /* 원형으로 만들기 */
+            width: 250px; /* 초기 크기를 250px로 설정 */
+            height: 250px;
+        }
+    </style>
+    <script>
+        let baseImageSize = 250;
+
+        // 파일 선택을 통해 이미지를 열고 표시하는 함수
+        function openImageFile() {
+            let input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.onchange = function (event) {
+                let file = event.target.files[0];
+                let reader = new FileReader();
+                reader.onload = function () {
+                    let image = document.createElement("img");
+                    image.src = reader.result;
+                    image.style.width = baseImageSize + "px";
+                    image.style.height = baseImageSize + "px";
+                    output.innerHTML = "";
+                    output.appendChild(image);
+                };
+                reader.readAsDataURL(file);
+            };
+            input.click();
+        }
+
+        function zoomInOut() {
+            let image = document.querySelector("#output img");
+            if (!image) return;
+
+            if (this.classList.contains("zoomOutBtn")) {
+                baseImageSize = Math.max(baseImageSize - 25, 50); // 25px만큼 줄이기
+            } else if (this.classList.contains("zoomInBtn")) {
+                baseImageSize = Math.min(baseImageSize + 25, 400); // 25px만큼 증가시키기
+            } else {
+                baseImageSize = 250; // 초기 크기로 복원하기
+            }
+
+            image.style.width = baseImageSize + "px";
+            image.style.height = baseImageSize + "px";
+        }
+    </script>
+    <script>
+        $(function () {
+            $(".zoomBtnZone button").on("click", zoomInOut);
+        });
+    </script>
+</head>
+<body>
+    <button onclick="openImageFile()">Open</button><br><br>
+    <p class="zoomBtnZone">
+        <button class="zoomOutBtn">-</button>
+        <button class="originBtn">100%</button>
+        <button class="zoomInBtn">+</button>
+    </p>
+
+    <hr>
+    <div id="output"></div>
+</body>
+</html>
