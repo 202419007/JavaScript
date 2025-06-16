@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop Menu</title>
+    <script src="js/jquery.js"></script>
+</head>
+<link rel="stylesheet" href="css/style.css">
+<body>
+    <nav class="dropdown">
+        <ul>
+            <li class="menu-item">
+                <a href="#">메뉴 1</a>
+                <ul class="submenu">
+                    <li><a href="jQueryEffect12-3.html" class="iframe-link">4계절풍경</a></li>
+                    <li><a href="jQueryEffect12-1.html" class="iframe-link">페이드인, 아웃</a></li>
+                    <li><a href="jQueryEffect12-4.html" class="iframe-link">베너광고</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#">메뉴 2</a>
+                <ul class="submenu">
+                    <li><a href="#">서브메뉴 2-1</a></li>
+                    <li><a href="#">서브메뉴 2-2</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#">메뉴 3</a>
+                <ul class="submenu">
+                    <li><a href="#">서브메뉴 3-1</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- iframe 켄테이너 -->
+    <div class="iframe-container">
+        <iframe id="target-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // 서브메뉴 보이기/숨기기
+            $(".menu-item").hover(
+                function(){
+                    $(this).children(".submenu").stop(true, true).slideDown(200);
+                },
+                function(){
+                    $(this).children(".submenu").stop(true, true).slideUp(200);
+                }
+            );
+
+            // 링크 클릭 시 iframe에 페이지 로드
+            $(".iframe-link").click(function (event) {
+                event.preventDefault(); // 기본 동작(페이지 이동) 방지
+                var url = $(this).attr("href"); // 클릭된 링크의 href 가져오기
+                $("#target-iframe").attr("src", url); // iframe에 URL 설정
+            });
+        });
+    </script>
+</body>
+</html>
