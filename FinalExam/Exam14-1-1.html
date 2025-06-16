@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+        border: 3px solid gray;
+        border-radius: 50%;
+        margin: 20px;
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const circleImages = document.querySelectorAll('.circle');
+
+            circleImages.forEach((circle, index) => {
+                const width = (index + 1) * 50;
+                const height = (index + 1) * 50;
+                const imgSrc = `media/img${index + 1}.png`;
+
+                // 각 원의 가로, 세로 크기와 이미지 소스를 설정
+                circle.style.width = `${width}px`;
+                circle.style.height = `${height}px`;
+                circle.setAttribute('src', imgSrc); // 각 원에 맞는 이미지를 설정
+            });
+        });
+    </script>
+</head>
+<body>
+    <img class="circle">
+    <img class="circle">
+    <img class="circle">
+    <img class="circle">
+</body>
+</html>
