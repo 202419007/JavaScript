@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script>
+		$(function(){
+			// 페이지 로드 시 실행
+			$(document).ready(function () {
+				// 모든 <li> 요소 선택
+				$("#menu li").each(function (index) {
+					// 짝수 번째 내용은 배경을 yellow로, 홀수 번째 내용은 배경을 lightblue로 설정
+					if (index % 2 === 0) {
+						$(this).css("background-color", "yellow");
+					} else {
+						$(this).css("background-color", "lightblue");
+					}
+				});
+			});
+						
+			// 3초후 실행
+			setTimeout(function () {
+				// 2번째 <li>보다 위의 내용은 배경을 aqua로 설정
+				$("#menu li:lt(2)").css("background-color", "aqua");
+								
+				// 2번째 <li>은 red로 설정
+				$("#menu li:eq(1)").css("background-color", "red");
+								
+				// 2번째보다 큰 <li>은 yellow 배경과 3px 빨간색 점선으로 설정
+				$("#menu li:gt(1)").css({
+					"background-color": "yellow",
+					"border": "3px red dashed"
+				});
+			}, 3000);
+		});
+	</script>
+</head>
+<body>
+	<ul id="menu">
+		<li>내용1</li>
+		<li>내용2</li>
+		<li>내용3</li>
+		<li>내용4</li>
+		<li>내용5</li>
+	</ul>
+</body>
+</html>
