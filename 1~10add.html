@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			let array1 = [1, 2, 3, 4, 5];
+			let array2 = [6, 7, 8, 9, 10];
+						
+			// 두 배열을 결합
+			let combinedArray = array1.concat(array2);
+						
+			// 결합된 배열을 첫 번째 <p>에 <h4>로 감싸서 표시
+			document.querySelector('body h3').insertAdjacentHTML('afterend', 
+			'<p><h4>' + JSON.stringify(combinedArray) + '</h4></p>');
+						
+			// 두 배열의 합계 계산
+			let sum = array1.reduce((acc, val) => acc + val, 0) 
+			+ array2.reduce((acc, val) => acc + val, 0);
+						
+			// 두 번째 <p>에 합계를 표시
+			document.querySelectorAll('p')[1].textContent = '합계: ' + sum;
+		});
+	</script>
+</head>
+<body>
+	<h3> 실행 결과 </h3>
+	<p></p>
+	<p></p>
+</body>
+</html>
